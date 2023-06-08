@@ -4,6 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.mealzapp.model.repositories.MealsRepository
 import com.example.mealzapp.model.response.CategoryResponse
 import com.example.mealzapp.model.response.MealCategoriesResponse
@@ -13,12 +14,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 
-class MealsViewModel(private val mealsRepository: MealsRepository=MealsRepository()):ViewModel() {
+class MealsViewModel(private val mealsRepository: MealsRepository = MealsRepository()) :
+    ViewModel() {
 
-    val mealsJob = Job()
     init {
-        val scope = CoroutineScope(mealsJob+ Dispatchers.IO)
-        scope.launch {
+        viewModelScope.launch {
             val meals = getMeals()
             categoriesState.value = meals
         }
@@ -27,11 +27,7 @@ class MealsViewModel(private val mealsRepository: MealsRepository=MealsRepositor
     val categoriesState: MutableState<List<CategoryResponse>> = mutableStateOf(emptyList())
 
 
-    override fun onCleared() {
-        super.onCleared()
-        mealsJob.cancel()
-    }
-    suspend fun getMeals():List<CategoryResponse> {
-        return  mealsRepository.getMeals().categoriesList
+    private suspend fun getMeals(): List<CategoryResponse> {
+        return mealsRepository.getMeals().categoriesList
     }
 }
