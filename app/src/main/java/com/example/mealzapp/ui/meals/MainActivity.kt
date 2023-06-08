@@ -7,24 +7,28 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mealzapp.model.response.CategoryResponse
 import com.example.mealzapp.model.response.MealCategoriesResponse
 import com.example.mealzapp.ui.theme.MealzAppTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MealzAppTheme {
-                    MealsCategoriesScreen()
-                
+                MealsCategoriesScreen()
+
             }
         }
     }
@@ -32,16 +36,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MealsCategoriesScreen(modifier: Modifier = Modifier) {
-        val mealsViewModel:MealsViewModel = viewModel()
-        val rememberList:MutableState<List<CategoryResponse>> = remember {
-            mutableStateOf(emptyList())
+    val mealsViewModel: MealsViewModel = viewModel()
+    val rememberList: MutableState<List<CategoryResponse>> = remember {
+        mutableStateOf(emptyList())
+    }
+
+    val rememberScope = rememberCoroutineScope()
+    LaunchedEffect(key1 = "GET_MEALS") {
+        rememberScope.launch(Dispatchers.IO) {
+            val response = mealsViewModel.getMeals()
+            rememberList.value = response
         }
-         mealsViewModel.getMeals{response: MealCategoriesResponse? ->
-            rememberList.value = response?.categoriesList.orEmpty()
-        }
+    }
 
     LazyColumn {
-        items(rememberList.value){category: CategoryResponse ->
+        items(rememberList.value) { category: CategoryResponse ->
             Text(text = category.categoryName)
         }
     }
