@@ -1,4 +1,4 @@
-package com.example.mealzapp.ui.meals
+package com.example.mealzapp.ui.meals.list
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 
-class MealsViewModel(private val mealsRepository: MealsRepository = MealsRepository()) :
+class MealsViewModel(private val mealsRepository: MealsRepository = MealsRepository.getInstance()) :
     ViewModel() {
 
     init {
