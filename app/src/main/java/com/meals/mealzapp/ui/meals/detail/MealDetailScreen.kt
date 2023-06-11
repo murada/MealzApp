@@ -16,7 +16,6 @@ import coil.compose.rememberImagePainter
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.meals.domain.entity.Category
-import com.meals.mealzapp.model.response.CategoryResponse
 
 @Composable
 fun MealDetailScreen(meal: Category?) {

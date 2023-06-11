@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meals.domain.entity.Category
 import com.meals.domain.usecases.GetMealByIdUseCase
-import com.meals.domain.usecases.GetMealsCategoriesUseCase
-import com.meals.mealzapp.model.repositories.MealsRepository
-import com.meals.mealzapp.model.response.CategoryResponse
 import com.meals.mealzapp.ui.navigation.NavigationKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

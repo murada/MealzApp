@@ -2,8 +2,6 @@ package com.meals.mealzapp.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.meals.data.api.MealsApi
-import com.meals.mealzapp.model.api.MealsWebService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

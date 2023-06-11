@@ -30,7 +30,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.meals.domain.entity.Category
-import com.meals.mealzapp.model.response.CategoryResponse
 import com.meals.mealzapp.ui.theme.MealzAppTheme
 
 @Composable
