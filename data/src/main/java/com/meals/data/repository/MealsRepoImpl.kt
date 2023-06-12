@@ -5,7 +5,7 @@ import com.meals.domain.entity.Category
 import com.meals.domain.repository.MealsRepo
 import javax.inject.Inject
 
-class MealsRepoImpl @Inject constructor(private val mealsApi: MealsApi): MealsRepo {
+class MealsRepoImpl (private val mealsApi: MealsApi): MealsRepo {
 
     val categoriesList = mutableListOf<Category>()
 

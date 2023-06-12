@@ -6,12 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meals.domain.entity.Category
 import com.meals.domain.usecases.GetMealsCategoriesUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class MealsViewModel @Inject constructor(private val getMealsCategoriesUseCase: GetMealsCategoriesUseCase) :
+
+class MealsViewModel(private val getMealsCategoriesUseCase: GetMealsCategoriesUseCase) :
     ViewModel() {
 
     init {

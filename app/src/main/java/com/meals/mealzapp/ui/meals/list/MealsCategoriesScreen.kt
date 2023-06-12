@@ -25,16 +25,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.meals.domain.entity.Category
 import com.meals.mealzapp.ui.theme.MealzAppTheme
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun MealsCategoriesScreen(navigation:(categoryId:String)->Unit) {
-    val mealsViewModel: MealsViewModel = hiltViewModel()
+    val mealsViewModel= getViewModel<MealsViewModel>()
     val categoriesList = mealsViewModel.categoriesState.value
     LazyColumn {
         items(categoriesList) { category: Category ->

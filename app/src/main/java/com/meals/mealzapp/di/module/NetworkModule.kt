@@ -2,41 +2,29 @@ package com.meals.mealzapp.di.module
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import org.koin.core.qualifier.StringQualifier
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module
-@InstallIn(SingletonComponent::class)
-class NetworkModule {
+val networkModule = module {
+    single { provideGson() }
+    single(qualifier = StringQualifier("BASE_URL")) { provideBaseUrl()}
+    single { provideGsonConverterFactory() }
+    single { provieRetrofitClient(get(qualifier = StringQualifier("BASE_URL")),get()) }
 
-    @Provides
-    fun provideBaseUrl(): String {
-        return "https://www.themealdb.com/api/json/v1/1/"
-    }
+}
 
-    @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
+private fun provieRetrofitClient(baseUrl: String,gsonConverterFactory:GsonConverterFactory): Retrofit =
+    Retrofit.Builder().baseUrl(baseUrl)
+        .addConverterFactory(gsonConverterFactory).build()
 
-    @Provides
-    fun provideRetrofit(
-        baseUrl: String,
-        gsonConverterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(gsonConverterFactory)
-            .build()
-    }
+private fun provideGson(): Gson? = GsonBuilder().create()
 
-    @Provides
-    fun provideGson(): Gson {
-        val gsonBuilder = GsonBuilder()
-        return gsonBuilder.create()
-    }
+fun provideBaseUrl(): String {
+    return "https://www.themealdb.com/api/json/v1/1/"
+}
+
+fun provideGsonConverterFactory(): GsonConverterFactory {
+    return GsonConverterFactory.create()
 }

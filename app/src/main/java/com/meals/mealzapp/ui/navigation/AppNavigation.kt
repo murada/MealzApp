@@ -1,8 +1,6 @@
 package com.meals.mealzapp.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,6 +9,8 @@ import androidx.navigation.navArgument
 import com.meals.mealzapp.ui.meals.detail.MealDetailScreen
 import com.meals.mealzapp.ui.meals.detail.MealDetailViewModel
 import com.meals.mealzapp.ui.meals.list.MealsCategoriesScreen
+import org.koin.androidx.compose.getStateViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun MealApp() {
@@ -29,7 +29,10 @@ fun MealApp() {
                 type = NavType.StringType
             })
         ) {
-            val viewmodel: MealDetailViewModel = hiltViewModel()
+            val parameters = it.arguments?.getString(NavigationKeys.MEAL_DETAIL_ARGUMENT)
+            val viewmodel = getStateViewModel<MealDetailViewModel>(){
+                parametersOf(parameters)
+            }
             MealDetailScreen(viewmodel.mealState.value)
         }
     }
