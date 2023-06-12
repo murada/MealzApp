@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
 }
+apply from: rootProject.file('git-hooks.gradle')
+
 
 android {
     namespace 'com.example.mealzapp'
@@ -45,6 +47,11 @@ android {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
+    }
+
+    // Executes intallGitHooks tasks after clean task is executed.
+    afterEvaluate {
+        clean.dependsOn installGitHooks
     }
 }
 
