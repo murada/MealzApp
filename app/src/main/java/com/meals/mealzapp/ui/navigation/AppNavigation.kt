@@ -6,9 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.meals.mealzapp.ui.meals.detail.MealDetailScreen
-import com.meals.mealzapp.ui.meals.detail.MealDetailViewModel
-import com.meals.mealzapp.ui.meals.list.MealsCategoriesScreen
+import com.meals.feature_category_list.meals.detail.MealDetailScreen
+import com.meals.feature_category_list.meals.detail.MealDetailViewModel
+import com.meals.feature_category_list.meals.list.MealsCategoriesScreen
 import org.koin.androidx.compose.getStateViewModel
 import org.koin.core.parameter.parametersOf
 
