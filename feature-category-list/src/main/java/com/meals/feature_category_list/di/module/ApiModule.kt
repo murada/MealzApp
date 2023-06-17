@@ -1,15 +1,14 @@
 package com.meals.feature_category_list.di.module
 
-import com.meals.data.api.MealsApi
+import com.meals.data.api.KtorMealsApi
+import io.ktor.client.HttpClient
 import org.koin.dsl.module
-import retrofit2.Retrofit
 
 
 val apiModule = module {
-    single { provideMealApi(get()) }
+    single { provideKtorMealApi(get()) }
 }
 
-fun provideMealApi(retrofit: Retrofit): MealsApi {
-    return retrofit.create(MealsApi::class.java)
+fun provideKtorMealApi(httpClient: HttpClient): KtorMealsApi {
+    return KtorMealsApi(httpClient)
 }
-

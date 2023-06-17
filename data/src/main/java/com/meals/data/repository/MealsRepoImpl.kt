@@ -1,11 +1,10 @@
 package com.meals.data.repository
 
-import com.meals.data.api.MealsApi
+import com.meals.data.api.KtorMealsApi
 import com.meals.domain.entity.Category
 import com.meals.domain.repository.MealsRepo
-import javax.inject.Inject
 
-class MealsRepoImpl (private val mealsApi: MealsApi): MealsRepo {
+class MealsRepoImpl (private val mealsApi: KtorMealsApi): MealsRepo {
 
     val categoriesList = mutableListOf<Category>()
 
