@@ -52,7 +52,7 @@ fun MealCategory(mealCategory: Category, navigation: (categoryId: String) -> Uni
         ),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(4.dp),
-        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 4.dp).clickable { navigation(mealCategory.categoryId) }
+        modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 4.dp).clickable { navigation(mealCategory.categoryName) }
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp), modifier = Modifier.padding(16.dp),

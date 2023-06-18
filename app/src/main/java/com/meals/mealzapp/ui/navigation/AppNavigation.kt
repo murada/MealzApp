@@ -33,7 +33,9 @@ fun MealApp() {
             val viewmodel = getStateViewModel<MealDetailViewModel>(){
                 parametersOf(parameters)
             }
-            MealDetailScreen(viewmodel.mealState.value)
+            MealDetailScreen(viewmodel.mealState.value){
+                navControl.navigate("${NavigationKeys.MEAL_DETAIL}/$it")
+            }
         }
     }
 }
