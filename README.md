@@ -20,7 +20,6 @@ Please adhere to this project's `code of conduct`.
 
 ```
   BASE_URL www.themealdb.com/api/json/v1/1/
-
 ```
 
 #### till now I implemented those APIs:
@@ -74,15 +73,16 @@ Please adhere to this project's `code of conduct`.
 
 
 ## Features
-- Implemented:
-    - List Meal's Categories
-    - List of Meals based on Category
-- Future:
-    - search
-    - favrite meal
-    - list of favorite meals
 
-
+- [x]  Adding list of meals categories.
+- [X]  List the meals by category.
+- [ ]  Implement meal details api :tada:
+- [ ]  Create meal details screen :tada:
+- [ ]  Search meal by name :tada:
+- [ ]  List the meals by **Area**.
+- [ ]  Filter Meals by **Main Ingredient**.
+- [ ]  Favorite meal.
+- [ ]  List of favorite meals.
 
 ## License
 
