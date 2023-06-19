@@ -18,7 +18,7 @@ Please adhere to this project's `code of conduct`.
 ## [The Meal DB](https://www.themealdb.com/) API   Reference
 
 
-```http
+```
   BASE_URL www.themealdb.com/api/json/v1/1/
 
 ```
@@ -26,13 +26,13 @@ Please adhere to this project's `code of conduct`.
 #### till now I implemented those APIs:
 #### Get all meal's categories
 
-```http
+```
   GET /categories.php
 ```
 
 #### Get meals by category
 
-```http
+```
   GET /filter.php?c={category_name}
 ```
 
