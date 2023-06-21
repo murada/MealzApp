@@ -13,8 +13,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Mealz App"
-include ':app'
-include ':data'
-include ':domain'
-include ':feature-category-list'
-include ':core-ui'
+include (":app")
+include (":data")
+include (":domain")
+include (":feature-category-list")
+include (":core-ui")
